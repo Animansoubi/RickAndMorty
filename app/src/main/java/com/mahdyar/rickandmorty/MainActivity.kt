@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mahdyar.rickandmorty.network.ApiClient
+import com.mahdyar.rickandmorty.network.ApiClient.apiService
 import com.mahdyar.rickandmorty.network.CharacterResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)//  what saveInstanceState do?
         setContentView(R.layout.activity_main)// vew by id VS view binding
 
-        val client = ApiClient.apiService.fetchCharacters("1")
+        val client = apiService.fetchCharacters("1")
         // do you know how did you create retrofit call and enqueue vs execute
         //what is the call back that you've used here
         client.enqueue(object : retrofit2.Callback<CharacterResponse> {
