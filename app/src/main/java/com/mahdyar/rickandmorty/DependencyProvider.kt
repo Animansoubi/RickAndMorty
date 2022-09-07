@@ -12,18 +12,18 @@ class DependencyProvider {
         return BASE_URL
     }
 
-    private fun provideMoshi(): Moshi {
+    private fun provideConverterFactory(): Moshi {
         return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     }
 
     private fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(provideBaseUrl())
-            .addConverterFactory(MoshiConverterFactory.create(provideMoshi()))
+            .addConverterFactory(MoshiConverterFactory.create(provideConverterFactory()))
             .build()
     }
 
-    fun provideService(): ApiService {
+    fun provideRickSndMortyService(): ApiService {
         return provideRetrofit().create(ApiService::class.java)
     }
 
