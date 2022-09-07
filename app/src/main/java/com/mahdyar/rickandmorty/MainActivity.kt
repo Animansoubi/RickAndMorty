@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
     // what do you know about activity?
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)//  what saveInstance state do?
@@ -17,7 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         val dependencyProvider = DependencyProvider()
 
-        val client = dependencyProvider.provideService().fetchCharacters("1")
+        val client = dependencyProvider.provideRickSndMortyService().fetchCharacters("1")
+
         // do you know how did you create retrofit call and enqueue vs execute
         //what is the call back that you've used here
         client.enqueue(object : retrofit2.Callback<CharacterResponse> {
@@ -38,10 +40,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
             // On Failure Response
             override fun onFailure(call: Call<CharacterResponse>, t: Throwable) {
-                Log.e("failed", "" + t.message)
+                Log.e("failed", "Network Call Failed with this message:" + t.message)
             }
         })
     }
